@@ -9,6 +9,6 @@ public class Main {
     public static void main(String[] args) {
         Gcode gcode = new Gcode("jdbc:mysql://localhost:3306/test", "root", "123456");
 
-        gcode.genBeanCode("user", "com.seaven.test");
+        gcode.genJavaBeanCode("user", "com.seaven.test");
     }
 }

@@ -9,6 +9,8 @@ import java.util.Date;
 import java.util.HashMap;
 
 import com.gcode.base.BeanClass;
+import com.gcode.code.CodeHandler;
+import com.gcode.code.JavaCodeHandler;
 import com.gcode.db.DataBase;
 
 import freemarker.template.Configuration;
@@ -41,10 +43,9 @@ public class Gcode {
         cfg.setDateFormat("yyyy-MM-dd");
     }
 
-    public void genBeanCode(String table, String packageName) {
-        BeanClass beanClass = new BeanClass();
-
-        beanClass.conventTableInfo(db.getTableInfo(table));
+    public void genJavaBeanCode(String table, String packageName) {
+        CodeHandler handler = new JavaCodeHandler();
+        BeanClass beanClass = handler.conventTableInfo(db.getTableInfo(table));
 
         beanClass.setPackageName(packageName);
         String out = getPackageDir(packageName) + "/" + beanClass.getClassName() + ".java";
